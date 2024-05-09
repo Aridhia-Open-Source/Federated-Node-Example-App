@@ -51,6 +51,7 @@ Shiny.addCustomMessageHandler("submitTask", function (token) {
         $("div#task_id").text("Created task with id: " + response["task_id"]);
         $("div#task_status").text("Task status: Initializing");
         $("button#status").removeAttr("disabled");
+        $("div#fn_error").text('');
     })
         .fail(function (xmlhttp, textStatus) {
             $("button#task").removeAttr("disabled");
@@ -81,7 +82,8 @@ Shiny.addCustomMessageHandler("checkStatus", function (args) {
             $("button#results").removeAttr("disabled");
         else
             $("button#status").removeAttr("disabled");
-    })
+        $("div#fn_error").text('');
+        })
         .fail(function (xmlhttp, textStatus) {
             $("button#status").removeAttr("disabled");
             $("div#fn_error").text(xmlhttp.responseJSON["error"]);
@@ -105,10 +107,11 @@ Shiny.addCustomMessageHandler("getResults", function (args) {
     $.ajax(settings).done(function (response) {
         $("button#task").removeAttr("disabled");
         $("div#task_status").text("Task status: completed");
+        $("div#fn_error").text('');
         $("div#results").text(`Results can be found in the 'Files' tab under results/${id}/ folder`);
     })
-        .fail(function (xmlhttp, textStatus) {
-            $("button#results").removeAttr("disabled");
-            $("div#fn_error").text(xmlhttp.responseJSON["error"]);
-        });
+    .fail(function (xmlhttp, textStatus) {
+        $("button#results").removeAttr("disabled");
+        $("div#fn_error").text(xmlhttp.responseJSON["error"]);
+    });
 });
