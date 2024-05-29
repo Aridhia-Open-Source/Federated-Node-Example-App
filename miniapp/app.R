@@ -30,6 +30,11 @@ ui <- fluidPage(
 server <- function(input, output, session) {
   task_id <- NULL
     sendTask <- function(image){
+      # Clear other text
+      output$fn_error <- renderText("")
+      output$task_status <- renderText("")
+      output$results <- renderText("")
+
       shinyjs::disable("task")
       headers = c(
         'Authorization' = paste("Bearer", token),
@@ -68,7 +73,6 @@ server <- function(input, output, session) {
         body=ListJSON
       )
       resp <- content(res, 'parsed')
-      print(resp)
       if (http_status(res)[["category"]] == "Success"){
         enable("status")
         task_id <<- resp[['task_id']]
@@ -79,12 +83,12 @@ server <- function(input, output, session) {
       }
     }
     getStatus <- function(){
+      output$fn_error <- renderText("")
       print("getStatus")
       disable("status")
       headers = c(
         'Authorization' = paste("Bearer", token)
       )
-      print(paste("https://qc-federatednode.qc.aridhiatest.net/tasks/", task_id, sep = ""))
       res <- VERB(
         "GET",
         url = paste("https://qc-federatednode.qc.aridhiatest.net/tasks/", task_id, sep = ""),
@@ -93,8 +97,6 @@ server <- function(input, output, session) {
       resp <- content(res, 'parsed')
 
       if (http_status(res)[["category"]] == "Success"){
-        print(resp[["status"]])
-        print(typeof(resp[["status"]]))
         if (typeof(resp[["status"]]) != "list"){
           enable("status")
           output$task_status <- renderText(paste("Status:", resp[["status"]]))
@@ -113,19 +115,20 @@ server <- function(input, output, session) {
     }
     getResults <- function(){
       disable("results")
+      output$fn_error <- renderText("")
       headers = c(
         'Authorization' = paste("Bearer", token)
       )
       res <- httr::GET(
         paste("https://qc-federatednode.qc.aridhiatest.net/tasks/", task_id, "/results", sep = ""),
         add_headers(headers),
-        httr::write_disk(paste("task", task_id, ".tar.gz", sep = ""), overwrite=TRUE),
+        httr::write_disk(paste("task_", task_id, ".tar.gz", sep = ""), overwrite=TRUE),
         httr::accept("*/*")
       )
 
       if (http_status(res)[["category"]] == "Success"){
         enable("task")
-        task_id <<- resp[['task_id']]
+        output$results <- renderText(paste("Results can be found in the 'Files' tab under the shiny app folder. Look for the file task_", task_id, ".tar.gz", sep = ""))
       } else {
         enable("results")
         resp <- content(res, 'parsed')
