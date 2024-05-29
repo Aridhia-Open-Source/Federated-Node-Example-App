@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: rapp
+  labels:
+    name: rapp
+spec:
+  containers:
+  - name: rapp
+    imagePullPolicy: Never
+    image: rtest:latest
+    command: [
+      "/bin/sh",
+      "-c",
+      "sleep 10000"
+    ]
+    resources:
+      limits:
+        memory: "1Gi"
+        cpu: "500m"
+    env:
+      - name: PGHOST
+        value: "testdb"
+      - name: PGPASSWORD
+        value: "password1"
+      - name: PGPORT
+        value: "5432"
+      - name: PGUSER
+        value: "user"
+      - name: PGDATABASE
+        value: "testing21"
