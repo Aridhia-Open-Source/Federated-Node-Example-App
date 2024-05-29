@@ -1,7 +1,7 @@
 #!/bin/bash
-R_IMAGE=rtest
+R_IMAGE=ghcr.io/arihdia-federated-node/rtest:latest
 
-docker build R -t $R_IMAGE
+docker build . -t $R_IMAGE
 docker save $R_IMAGE > r.tar
 microk8s ctr image import r.tar
 
