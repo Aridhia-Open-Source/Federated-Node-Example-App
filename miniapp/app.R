@@ -1,11 +1,22 @@
+library(httr)
+library(jsonlite)
 library(shiny)
 if (!require("shinyjs")) install.packages("shinyjs")
 if (!require("shinycssloaders")) install.packages("shinycssloaders")
-library(httr)
-library(jsonlite)
 
 token <- Sys.getenv("PHEMS_FN_Demo_Dataset_2238")
-
+commands <- list(
+  "arihdia-federated-node/rtest:latest" = NULL,
+  "arihdia-federated-node/rocker-r-ver:4.3" = c(
+    "R",
+    "-e",
+    "df <- as.data.frame(installed.packages())[,c('Package', 'Version')];write.csv(df, file='/mnt/data/packages.csv', row.names=FALSE);Sys.sleep(10)"
+  )
+)
+resultsFiles <- list(
+  "arihdia-federated-node/rtest:latest" = "average.csv",
+  "arihdia-federated-node/rocker-r-ver:4.3" = "packages.csv"
+)
 
 # Define UI for the application
 ui <- fluidPage(
@@ -14,7 +25,10 @@ ui <- fluidPage(
     titlePanel("Federated Node Task Runner"),
     tags$head(tags$script(src = "fnrequest.js")),
     selectInput("image", "Analytics to run:",
-        c("Average values" = "arihdia-federated-node/rocker-r-ver:4.3")
+        c(
+          "Average values" = "arihdia-federated-node/rtest:latest",
+          "Package List" = "arihdia-federated-node/rocker-r-ver:4.3"
+          )
     ),
     actionButton("task", "Run Task!"),
     actionButton("status", "check status", disabled = TRUE),
@@ -22,8 +36,12 @@ ui <- fluidPage(
 
     textOutput("task_id"),
     textOutput("task_status"),
-    textOutput("results"),
-    span(textOutput("fn_error"), style="color:red;")
+    textOutput("resultsText"),
+    textOutput("resultsTable"),
+    span(textOutput("fn_error"), style="color:red;"),
+    mainPanel(
+      tableOutput("table")
+    )
 )
 
 # Define server logic for the application
@@ -34,22 +52,22 @@ server <- function(input, output, session) {
       output$fn_error <- renderText("")
       output$task_status <- renderText("")
       output$results <- renderText("")
+      hide("table")
 
       shinyjs::disable("task")
       headers = c(
         'Authorization' = paste("Bearer", token),
         "Content-Type" = "application/json"
       )
+      command <- commands[[image]]
+
+      print(command)
       body <- list(
         name = "Test Task",
         executors = list(
           list(
-            image="arihdia-federated-node/rocker-r-ver:4.3",
-            command=c(
-              "R",
-              "-e",
-              "df <- as.data.frame(installed.packages())[,c('Package', 'Version')];write.csv(df, file='/mnt/data/packages.csv', row.names=FALSE);Sys.sleep(10)"
-            ),
+            image=image,
+            command=command,
             env=list(VARIABLE_UNIQUE=123)
           ),list()
         ),
@@ -73,6 +91,7 @@ server <- function(input, output, session) {
         body=ListJSON
       )
       resp <- content(res, 'parsed')
+      print(resp)
       if (http_status(res)[["category"]] == "Success"){
         enable("status")
         task_id <<- resp[['task_id']]
@@ -113,7 +132,7 @@ server <- function(input, output, session) {
         output$fn_error <- renderText(resp[["error"]])
       }
     }
-    getResults <- function(){
+    getResults <- function(image){
       disable("results")
       output$fn_error <- renderText("")
       headers = c(
@@ -128,7 +147,11 @@ server <- function(input, output, session) {
 
       if (http_status(res)[["category"]] == "Success"){
         enable("task")
-        output$results <- renderText(paste("Results can be found in the 'Files' tab under the shiny app folder. Look for the file task_", task_id, ".tar.gz", sep = ""))
+        fileres <- paste("task_", task_id, ".tar.gz", sep = "")
+        system(paste("tar -xvf", fileres))
+        data <- read.csv(paste(task_id, "/", resultsFiles[[image]], sep = ""))
+        output$table <- renderTable({data})
+        output$resultsText <- renderText(paste("Results can also be found in the 'Files' tab under the shiny app folder. Look for the file", fileres, sep = ""))
       } else {
         enable("results")
         resp <- content(res, 'parsed')
@@ -145,7 +168,7 @@ server <- function(input, output, session) {
     # Add logic for reactive elements here.
     onclick("task", sendTask(input$image))
     onclick("status", getStatus())
-    onclick("results", getResults())
+    onclick("results", getResults(input$image))
 }
 
 # Run the application
