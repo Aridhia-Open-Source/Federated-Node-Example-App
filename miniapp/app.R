@@ -1,9 +1,9 @@
+library(shiny)
 library(httr)
 library(jsonlite)
-library(shiny)
 if (!require("shinyjs")) install.packages("shinyjs")
 if (!require("shinycssloaders")) install.packages("shinycssloaders")
-
+system("mkdir ~/results")
 token <- Sys.getenv("PHEMS_FN_Demo_Dataset_2238")
 commands <- list(
   "arihdia-federated-node/rtest:latest" = NULL,
@@ -37,8 +37,8 @@ ui <- fluidPage(
     textOutput("task_id"),
     textOutput("task_status"),
     textOutput("resultsText"),
-    textOutput("resultsTable"),
     span(textOutput("fn_error"), style="color:red;"),
+
     mainPanel(
       tableOutput("table")
     )
@@ -46,7 +46,7 @@ ui <- fluidPage(
 
 # Define server logic for the application
 server <- function(input, output, session) {
-  task_id <- NULL
+    task_id <- NULL
     sendTask <- function(image){
       # Clear other text
       output$fn_error <- renderText("")
@@ -61,7 +61,6 @@ server <- function(input, output, session) {
       )
       command <- commands[[image]]
 
-      print(command)
       body <- list(
         name = "Test Task",
         executors = list(
@@ -91,7 +90,6 @@ server <- function(input, output, session) {
         body=ListJSON
       )
       resp <- content(res, 'parsed')
-      print(resp)
       if (http_status(res)[["category"]] == "Success"){
         enable("status")
         task_id <<- resp[['task_id']]
@@ -141,17 +139,19 @@ server <- function(input, output, session) {
       res <- httr::GET(
         paste("https://qc-federatednode.qc.aridhiatest.net/tasks/", task_id, "/results", sep = ""),
         add_headers(headers),
-        httr::write_disk(paste("task_", task_id, ".tar.gz", sep = ""), overwrite=TRUE),
+        httr::write_disk(paste("~/task_", task_id, ".tar.gz", sep = ""), overwrite=TRUE),
         httr::accept("*/*")
       )
 
       if (http_status(res)[["category"]] == "Success"){
         enable("task")
         fileres <- paste("task_", task_id, ".tar.gz", sep = "")
-        system(paste("tar -xvf", fileres))
-        data <- read.csv(paste(task_id, "/", resultsFiles[[image]], sep = ""))
+
+        system(paste("tar -xf ~/", fileres, " -C ~/results/", sep = ""))
+        data <- read.csv(paste("~/results/", task_id, "/", resultsFiles[[image]], sep = ""))
+
+        show("table")
         output$table <- renderTable({data})
-        output$resultsText <- renderText(paste("Results can also be found in the 'Files' tab under the shiny app folder. Look for the file", fileres, sep = ""))
       } else {
         enable("results")
         resp <- content(res, 'parsed')
