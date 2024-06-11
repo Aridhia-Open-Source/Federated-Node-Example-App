@@ -10,4 +10,8 @@ con <- dbConnect(
 
 query <- Sys.getenv("QUERY", "SELECT AVG(speed) FROM carspeed;")
 res <- dbSendQuery(con, query)
-write.csv(fetch(res), file='/mnt/data/average.csv', row.names=FALSE)
+avg <- fetch(res)
+print(avg)
+write.csv(avg, file='/mnt/data/average.csv', row.names=FALSE)
+dbClearResult(res)
+dbDisconnect(con)
