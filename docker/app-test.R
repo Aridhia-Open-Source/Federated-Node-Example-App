@@ -8,7 +8,7 @@ con <- dbConnect(
     password = Sys.getenv("PGPASSWORD")
 )
 
-query <- Sys.getenv("QUERY", "SELECT AVG(speed) FROM carspeed;")
+query <- Sys.getenv("QUERY", "SELECT AVG(speed) AS \"Average Speed\" FROM carspeed;")
 res <- dbSendQuery(con, query)
 avg <- fetch(res)
 print(avg)
