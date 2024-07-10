@@ -44,6 +44,6 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: docker
-          file: Dockerfile
+          file: docker/Dockerfile
           tags: ${{ vars.DOCKER_ACR }}/${{ env.OWNER_LC }}/rtest:${{ env.TAG }}
           push: true
