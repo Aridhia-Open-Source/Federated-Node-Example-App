@@ -9,11 +9,11 @@ To build it, run
 ```sh
 ./build.sh
 ```
-it will create an image called `ghcr.io/arihdia-federated-node/rtest:latest`
+it will create an image called `ghcr.io/aridhia-open-source/rtest:latest`
 
 push it with
 ```sh
-docker push ghcr.io/arihdia-federated-node/rtest:latest
+docker push ghcr.io/aridhia-open-source/rtest:latest
 ```
 
 ### Miniapp

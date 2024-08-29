@@ -1,5 +1,5 @@
 #!/bin/bash
-R_IMAGE=ghcr.io/arihdia-federated-node/rtest:latest
+R_IMAGE=ghcr.io/aridhia-open-source/rtest:latest
 
 docker build . -t $R_IMAGE
 docker save $R_IMAGE > r.tar

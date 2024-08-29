@@ -6,16 +6,16 @@ if (!require("shinycssloaders")) install.packages("shinycssloaders")
 system("mkdir ~/results")
 token <- Sys.getenv("PHEMS_FN_Demo_Dataset_2238")
 commands <- list(
-  "arihdia-federated-node/rtest:latest" = NULL,
-  "arihdia-federated-node/rocker-r-ver:4.3" = c(
+  "aridhia-open-source/rtest:latest" = NULL,
+  "aridhia-open-source/rocker-r-ver:4.3" = c(
     "R",
     "-e",
     "df <- as.data.frame(installed.packages())[,c('Package', 'Version')];write.csv(df, file='/mnt/data/packages.csv', row.names=FALSE);Sys.sleep(10)"
   )
 )
 resultsFiles <- list(
-  "arihdia-federated-node/rtest:latest" = "average.csv",
-  "arihdia-federated-node/rocker-r-ver:4.3" = "packages.csv"
+  "aridhia-open-source/rtest:latest" = "average.csv",
+  "aridhia-open-source/rocker-r-ver:4.3" = "packages.csv"
 )
 
 # Define UI for the application
@@ -26,8 +26,8 @@ ui <- fluidPage(
     tags$head(tags$script(src = "fnrequest.js")),
     selectInput("image", "Analytics to run:",
         c(
-          "Average values" = "arihdia-federated-node/rtest:latest",
-          "Package List" = "arihdia-federated-node/rocker-r-ver:4.3"
+          "Average values" = "aridhia-open-source/rtest:latest",
+          "Package List" = "aridhia-open-source/rocker-r-ver:4.3"
           )
     ),
     actionButton("task", "Run Task!"),
