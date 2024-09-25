@@ -1,7 +1,7 @@
 apiVersion: tasks.federatednode.com/v1
 kind: Analytics
 metadata:
-  name: newtask
+  name: newtaskagain
 spec:
   image: aridhia-open-source/rtest:latest
   user: r-casula
