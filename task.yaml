@@ -1,0 +1,9 @@
+apiVersion: tasks.federatednode.com/v1
+kind: Analytics
+metadata:
+  name: testtask1213
+spec:
+  image: aridhia-open-source/rtest:latest
+  user: r-casula
+  project: test1
+  dataset: 1
