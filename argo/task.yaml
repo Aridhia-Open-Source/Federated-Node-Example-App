@@ -1,9 +1,9 @@
 apiVersion: tasks.federatednode.com/v1
 kind: Analytics
 metadata:
-  name: testtask1213
+  name: newtask
 spec:
   image: aridhia-open-source/rtest:latest
   user: r-casula
-  project: test1
+  project: blood
   dataset: 1
