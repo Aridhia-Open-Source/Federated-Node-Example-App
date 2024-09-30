@@ -1,16 +1,16 @@
 {
-    "apiVersion": "tasks.federatednode.com/v1",
-    "kind": "Analytics",
-    "metadata": {
-        "name": "dynamic-task",
-        "namespace": "analytics"
-    },
-    "spec": {
-        "dataset": 1,
-        "image": "aridhia-open-source/rtest:latest",
-        "project": "blood",
-        "user": {
-
-        }
+  "apiVersion": "tasks.federatednode.com/v1",
+  "kind": "Analytics",
+  "metadata": {
+    "name": "dynamic-task",
+    "namespace": "analytics"
+  },
+  "spec": {
+    "dataset": 1,
+    "image": "aridhia-open-source/rtest:latest",
+    "project": "blood",
+    "user": {
+      "username": ""
     }
+  }
 }
