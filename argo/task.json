@@ -10,7 +10,7 @@
     "image": "aridhia-open-source/rtest:latest",
     "project": "blood",
     "user": {
-      "username": ""
+      "username": "null"
     }
   }
 }
