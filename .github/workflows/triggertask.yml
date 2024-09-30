@@ -5,6 +5,9 @@ on:
     branches:
       - pipe-test
 
+env:
+  GH_TOKEN: ${{ secrets.SA_TOKEN }}
+
 jobs:
   update:
     runs-on: ubuntu-latest
@@ -13,7 +16,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           ref: test-merge
-          token: ${{ secrets.SA_TOKEN }}
+          token: ${{ env.GH_TOKEN }}
       - name: Update values
         run: |
           AUTHOR=$(gh pr list -B main --state merged --json author,mergedAt,mergedBy,headRefName,number | jq '.[0].author.login')
