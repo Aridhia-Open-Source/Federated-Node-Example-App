@@ -1,9 +1,11 @@
 apiVersion: tasks.federatednode.com/v1
 kind: Analytics
 metadata:
-  name: cancer-task
+  name: more-tasks
+  namespace: analytics
 spec:
   image: aridhia-open-source/rtest:latest
-  user: r-casula
+  user:
+    email: test@test.com
   project: blood
   dataset: 1
