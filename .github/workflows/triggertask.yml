@@ -13,6 +13,10 @@ jobs:
   update:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout this branch
+        uses: actions/checkout@v4
+      - run: |
+          echo "NEW_TASK=$(cat argo/task.json)" >> ${GITHUB_ENV}
       - name: Checkout
         uses: actions/checkout@v4
         with:
@@ -27,7 +31,7 @@ jobs:
           fi
           git config --global user.name 'BotMan'
           git config --global user.email 'r-casula@users.noreply.github.com'
-          cat argo/task.json | jq ".spec.user |= .+ {\"username\": $AUTHOR}" > temp.json
+          echo ${{ env.NEW_TASK }} | jq ".spec.user |= .+ {\"username\": $AUTHOR}" > temp.json
           mv temp.json argo/task.json
           git add argo/task.json
           git commit -am "Added user info"
