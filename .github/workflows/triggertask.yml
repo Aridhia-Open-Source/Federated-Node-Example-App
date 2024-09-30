@@ -7,6 +7,7 @@ on:
 
 env:
   GH_TOKEN: ${{ secrets.SA_TOKEN }}
+  DEST_BRANCH: test-merge
 
 jobs:
   update:
@@ -15,11 +16,15 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          ref: test-merge
+          ref: ${{ env.DEST_BRANCH }}
           token: ${{ env.GH_TOKEN }}
       - name: Update values
         run: |
-          AUTHOR=$(gh pr list -B main --state merged --json author,mergedAt,mergedBy,headRefName,number | jq '.[0].author.login')
+          AUTHOR=$(gh pr list -B pipe-test --state merged --json author,mergedAt,mergedBy,headRefName,number | jq '.[0].author.login')
+          if [[ "$AUTHOR" == 'null' ]]; then
+            echo "No user found"
+            exit 1
+          fi
           git config --global user.name 'BotMan'
           git config --global user.email 'r-casula@users.noreply.github.com'
           cat argo/task.json | jq ".spec.user |= .+ {\"username\": \"$AUTHOR\"}" > temp.json
