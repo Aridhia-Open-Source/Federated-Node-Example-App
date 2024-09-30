@@ -19,6 +19,7 @@ jobs:
           AUTHOR=$(gh pr list -B main --state merged --json author,mergedAt,mergedBy,headRefName,number | jq '.[0].author.login')
           git config --global user.name 'BotMan'
           git config --global user.email 'r-casula@users.noreply.github.com'
+          cat argo/task.json | jq '.spec.user |= .+ {"username": "$AUTHOR"}'
+          git add argo/task.json
           git commit -am "Added user info"
           git push
-          cat argo/task.json | jq '.spec.user |= .+ {"username": "$AUTHOR"}'
