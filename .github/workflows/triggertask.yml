@@ -17,8 +17,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Save template
+        id: save-template
         run: |
-          echo "TEMPL_CONTENTS=\"$(cat ${{ env.TEMPLATE_PATH }})\"" >> "$GITHUB_ENV"
+          TEMPL=$(cat ${{ env.TEMPLATE_PATH }})
+          echo "TEMPL_CONTENTS=${TEMPL}" >> "$GITHUB_OUTPUT"
 
       - name: Checkout Argo Branch
         uses: actions/checkout@v4
@@ -26,6 +28,8 @@ jobs:
           ref: ${{ env.DEST_BRANCH }}
           token: ${{ env.GH_TOKEN }}
       - name: Update values
+        env: 
+          TEMPL_CONTENTS: ${{ steps.save-template.outputs.TEMPL_CONTENTS }}
         run: |
           AUTHOR=$(gh pr list -B pipe-test --state merged --json author,mergedAt,mergedBy,headRefName,number | jq '.[0].author.login')
           if [[ "$AUTHOR" == 'null' ]]; then
