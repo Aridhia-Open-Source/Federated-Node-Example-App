@@ -8,6 +8,7 @@ on:
 env:
   GH_TOKEN: ${{ secrets.SA_TOKEN }}
   DEST_BRANCH: argo-monitor
+  TEMPLATE_PATH: argo/task.json
 
 jobs:
   update:
@@ -28,8 +29,8 @@ jobs:
           git config --global user.name 'BotMan'
           git config --global user.email 'r-casula@users.noreply.github.com'
 
-          cat argo/task.json | jq ".spec |= .+ {\"user\": {\"username\": $AUTHOR}, \"repository\": \"${{ github.repository }}\", \"organization\": \"${{ github.repository_owner }}\"}" > temp.json
-          mv temp.json argo/task.json
-          git add argo/task.json
+          cat ${{ env.TEMPLATE_PATH }} | jq ".spec |= .+ {\"user\": {\"username\": $AUTHOR}, \"repository\": \"${{ github.repository }}\", \"organization\": \"${{ github.repository_owner }}\"}" > temp.json
+          mv temp.json ${{ env.TEMPLATE_PATH }}
+          git add ${{ env.TEMPLATE_PATH }}
           git commit -am "Added user info"
           git push
