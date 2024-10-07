@@ -2,7 +2,7 @@
   "apiVersion": "tasks.federatednode.com/v1",
   "kind": "Analytics",
   "metadata": {
-    "name": "another",
+    "name": "tsktsk",
     "namespace": "analytics"
   },
   "spec": {
