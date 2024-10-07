@@ -19,7 +19,7 @@ jobs:
       - name: Save template
         id: save-template
         run: |
-          TEMPL=$(cat ${{ env.TEMPLATE_PATH }})
+          TEMPL=$(cat ${{ env.TEMPLATE_PATH }} | jq -c)
           echo "TEMPL_CONTENTS=${TEMPL}" >> "$GITHUB_OUTPUT"
 
       - name: Checkout Argo Branch
