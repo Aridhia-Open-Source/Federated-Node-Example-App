@@ -29,7 +29,7 @@ jobs:
           git config --global user.email 'r-casula@users.noreply.github.com'
 
           git fetch
-          git checkout ${{ github.ref }} -- argo/task.json
+          git checkout ${{ github.ref_name }} -- argo/task.json
           cat argo/task.json | jq ".spec |= .+ {\"user\": {\"username\": $AUTHOR}, \"repository\": \"${{ github.repository }}\", \"organization\": \"${{ github.repository_owner }}\"}" > temp.json
           mv temp.json argo/task.json
           git add argo/task.json
