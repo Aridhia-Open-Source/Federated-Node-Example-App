@@ -16,6 +16,12 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Save template
+        run: |
+          echo "TEMPL_CONTENTS=$(cat ${{ env.TEMPLATE_PATH }})" >> "$GITHUB_ENV"
+
+      - name: Checkout Argo Branch
+        uses: actions/checkout@v4
         with:
           ref: ${{ env.DEST_BRANCH }}
           token: ${{ env.GH_TOKEN }}
@@ -29,8 +35,7 @@ jobs:
           git config --global user.name 'BotMan'
           git config --global user.email 'r-casula@users.noreply.github.com'
 
-          cat ${{ env.TEMPLATE_PATH }} | jq ".spec |= .+ {\"user\": {\"username\": $AUTHOR}, \"repository\": \"${{ github.repository }}\", \"organization\": \"${{ github.repository_owner }}\"}" > temp.json
-          mv temp.json ${{ env.TEMPLATE_PATH }}
+          echo "$TEMPL_CONTENTS" | jq ".spec |= .+ {\"user\": {\"username\": $AUTHOR}, \"repository\": \"${{ github.repository }}\", \"organization\": \"${{ github.repository_owner }}\"}" > ${{ env.TEMPLATE_PATH }}
           git add ${{ env.TEMPLATE_PATH }}
           git commit -am "Added user info"
           git push
