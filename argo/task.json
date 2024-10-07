@@ -11,6 +11,8 @@
     "project": "project1",
     "user": {
       "username": "r-casula"
-    }
+    },
+    "repository": "Aridhia-Open-Source/Federated-Node-Example-App",
+    "organization": "Aridhia-Open-Source"
   }
 }
