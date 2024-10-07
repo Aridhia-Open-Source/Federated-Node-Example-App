@@ -18,7 +18,7 @@ jobs:
         uses: actions/checkout@v4
       - name: Save template
         run: |
-          echo "TEMPL_CONTENTS=$(cat ${{ env.TEMPLATE_PATH }})" >> "$GITHUB_ENV"
+          echo "TEMPL_CONTENTS=\"$(cat ${{ env.TEMPLATE_PATH }})\"" >> "$GITHUB_ENV"
 
       - name: Checkout Argo Branch
         uses: actions/checkout@v4
