@@ -7,7 +7,7 @@ on:
 
 jobs:
   update:
-    uses: Aridhia-Open-Source/federated-node-task-controller/.github/workflows/trigger-task.yml@gh-results
+    uses: Aridhia-Open-Source/pipelines/.github/workflows/trigger-task.yml@main
     with:
       DEST_BRANCH: argo-monitor
       TEMPLATE_PATH: argo/task.json
