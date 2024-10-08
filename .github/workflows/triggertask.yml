@@ -7,8 +7,8 @@ on:
 
 jobs:
   update:
-    uses: Aridhia-Open-Source/federated-node-task-controller/.github/workflows/trigger-task.yaml@gh-results
+    uses: Aridhia-Open-Source/federated-node-task-controller/.github/workflow-templates/trigger-task.yml@gh-results
     with:
-      DEST_BRANCH:  argo-monitor
+      DEST_BRANCH: argo-monitor
       GH_TOKEN: ${{ secrets.SA_TOKEN }}
       TEMPLATE_PATH: argo/task.json
