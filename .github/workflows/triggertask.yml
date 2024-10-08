@@ -12,4 +12,3 @@ jobs:
       DEST_BRANCH: argo-monitor
       GH_TOKEN: ${{ secrets.SA_TOKEN }}
       TEMPLATE_PATH: argo/task.json
-
