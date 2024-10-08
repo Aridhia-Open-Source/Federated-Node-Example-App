@@ -5,17 +5,10 @@ on:
     branches:
       - pipe-test
 
-env:
-  DEST_BRANCH: argo-monitor
-  TEMPLATE_PATH: argo/task.json
-
 jobs:
   update:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: Aridhia-Open-Source/federated-node-task-controller/.github/workflows/trigger-task.yaml@gh-results
-        with:
-          DEST_BRANCH: ${{ env.DEST_BRANCH }}
-          GH_TOKEN: ${{ secrets.SA_TOKEN }}
-          TEMPLATE_PATH: ${{ env.TEMPLATE_PATH }}
+    uses: Aridhia-Open-Source/federated-node-task-controller/.github/workflows/trigger-task.yaml@gh-results
+    with:
+      DEST_BRANCH:  argo-monitor
+      GH_TOKEN: ${{ secrets.SA_TOKEN }}
+      TEMPLATE_PATH: argo/task.json
