@@ -2,7 +2,7 @@
   "apiVersion": "tasks.federatednode.com/v1",
   "kind": "Analytics",
   "metadata": {
-    "name": "asdf",
+    "name": "analysis123",
     "namespace": "analytics"
   },
   "spec": {
