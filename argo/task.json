@@ -2,7 +2,7 @@
   "apiVersion": "tasks.federatednode.com/v1",
   "kind": "Analytics",
   "metadata": {
-    "name": "task23",
+    "name": "tasktest",
     "namespace": "analytics"
   },
   "spec": {
