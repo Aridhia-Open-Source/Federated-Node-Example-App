@@ -1,4 +1,4 @@
-name: Update Task
+name: Update Task Definition
 run-name: update_task
 on:
   push:
