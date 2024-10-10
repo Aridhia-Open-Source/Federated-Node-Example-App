@@ -9,7 +9,7 @@ on:
       - main
 
 jobs:
-  update:
+  build:
     uses: Aridhia-Open-Source/pipelines/.github/workflows/build-docker.yml@main
     with:
       TAG: ${{ vars.VERSION }}
