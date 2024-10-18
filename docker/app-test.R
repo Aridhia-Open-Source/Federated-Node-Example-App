@@ -1,4 +1,3 @@
-install.packages("RODBC")
 require("RODBC")
 dbhandle <- odbcDriverConnect(paste0('driver={SQL Server};server=',Sys.getenv("PGHOST"), ';database=',Sys.getenv("PGDATABASE"),';uid=', Sys.getenv("PGUSER"), ';pwd=', Sys.getenv("PGPASSWORD")))
 res <- sqlQuery(dbhandle, 'select * from omop.person')
