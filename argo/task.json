@@ -2,7 +2,7 @@
   "apiVersion": "tasks.federatednode.com/v1",
   "kind": "Analytics",
   "metadata": {
-    "name": "tasktest",
+    "name": "pull",
     "namespace": "analytics"
   },
   "spec": {
