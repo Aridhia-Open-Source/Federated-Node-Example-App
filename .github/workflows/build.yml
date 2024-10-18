@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - MS-SQL
   pull_request:
     branches:
       - main
@@ -12,7 +13,7 @@ jobs:
   build:
     uses: Aridhia-Open-Source/pipelines/.github/workflows/build-docker.yml@main
     with:
-      TAG: ${{ vars.VERSION }}
+      TAG: 1.1
       IMAGE: rtest
       BUILD_PATH: docker
       HASH_SUFFIX: false
