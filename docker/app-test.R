@@ -1,10 +1,14 @@
 library("DBI")
 library("odbc")
 library("RODBC")
+library("stringr")
+
+host <- str_replace(Sys.getenv("PGHOST"), "http://", "")
+host <- str_replace(host, "https://", "")
 
 connection_string <- paste0(
     'driver={ODBC Driver 18 for SQL Server}',
-    ';server=', Sys.getenv("PGHOST"),
+    ';server=', host,
     ';database=', Sys.getenv("PGDATABASE"),
     ';uid=', Sys.getenv("PGUSER"),
     ';pwd=', Sys.getenv("PGPASSWORD"),
