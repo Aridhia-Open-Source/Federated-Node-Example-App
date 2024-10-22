@@ -3,6 +3,7 @@ library("odbc")
 library("RODBC")
 library("stringr")
 
+resBasePath <- '/mnt/data'
 host <- str_replace(Sys.getenv("PGHOST"), "http://", "")
 host <- str_replace(host, "https://", "")
 
@@ -18,6 +19,5 @@ connection_string <- paste0(
 
 conn <- odbcDriverConnect(connection_string)
 res <- sqlQuery(conn, 'SELECT * FROM omop.person')
-print(res)
-write.csv(res, file='/mnt/data/average.csv', row.names=FALSE)
+write.csv(res, file=paste0(resBasePath, 'average.csv', sep='/'), row.names=FALSE)
 odbcCloseAll()
