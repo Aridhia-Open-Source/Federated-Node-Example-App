@@ -5,12 +5,12 @@ on:
     branches:
       - test-pl-trigger
     paths-ignore:
-      - *.md
-      - README*
-      - LICENSE*
-      - Makefile
-      - .gitignore
-      - sub licenses
+      - '*.md'
+      - 'README*'
+      - 'LICENSE*'
+      - 'Makefile'
+      - '.gitignore'
+      - 'sub licenses'
   pull_request:
     branches:
       - main
