@@ -23,3 +23,5 @@ Is a simple R script based on `shiny` where a dropdown menu and couple of button
 Copy the whole folder content into a `Blank mini app` folder in the DRE and it should be ready to go.
 
 One additional step might require the whitelisting of the federated node endpoint in the workspace settings.
+
+testing change
