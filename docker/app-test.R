@@ -19,5 +19,5 @@ connection_string <- paste0(
 
 conn <- odbcDriverConnect(connection_string)
 res <- sqlQuery(conn, 'SELECT * FROM omop.person')
-write.csv(res, file=paste0(resBasePath, 'average.csv', sep='/'), row.names=FALSE)
+write.csv(res, file='/mnt/data/average.csv', row.names=FALSE)
 odbcCloseAll()
