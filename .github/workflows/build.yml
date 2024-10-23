@@ -10,7 +10,7 @@ on:
       - 'LICENSE*'
       - 'Makefile'
       - '.gitignore'
-      - 'sub licenses'
+      - 'sub licenses/**'
   pull_request:
     branches:
       - main
