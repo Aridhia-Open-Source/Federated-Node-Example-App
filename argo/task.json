@@ -2,7 +2,7 @@
   "apiVersion": "tasks.federatednode.com/v1",
   "kind": "Analytics",
   "metadata": {
-    "name": "pull",
+    "name": "withid",
     "namespace": "analytics"
   },
   "spec": {
@@ -10,7 +10,8 @@
     "image": "aridhia-open-source/rtest:latest",
     "project": "project1",
     "user": {
-      "username": "r-casula"
+      "username": "r-casula",
+      "idpId": null
     },
     "repository": "Aridhia-Open-Source/Federated-Node-Example-App",
     "organization": "Aridhia-Open-Source"
