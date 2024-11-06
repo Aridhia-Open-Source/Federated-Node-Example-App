@@ -7,7 +7,7 @@
   },
   "spec": {
     "dataset": 1,
-    "image": "aridhia-open-source/rtest:latest",
+    "image": "aridhia-open-source/rtest:latest-dev",
     "project": "project1",
     "user": {
       "username": "r-casula",
