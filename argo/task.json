@@ -2,12 +2,12 @@
   "apiVersion": "tasks.federatednode.com/v1",
   "kind": "Analytics",
   "metadata": {
-    "name": "withidp",
+    "name": "teststas",
     "namespace": "analytics"
   },
   "spec": {
     "dataset": 1,
-    "image": "aridhia-open-source/rtest:latest-dev",
+    "image": "aridhia-open-source/rtest:latest",
     "project": "project1",
     "user": {
       "username": "r-casula",
