@@ -6,8 +6,8 @@
         "namespace": "analytics"
     },
     "spec": {
-        "dataset": 2,
-        "image": "aridhia-open-source/rtest:latest",
+        "dataset": 1,
+        "image": "aridhia-open-source/rtest:latest-dev",
         "project": "project1"
     }
 }
