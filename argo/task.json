@@ -2,11 +2,11 @@
     "apiVersion": "tasks.federatednode.com/v1",
     "kind": "Analytics",
     "metadata": {
-        "name": "testrun",
+        "name": "mytask",
         "namespace": "analytics"
     },
     "spec": {
-        "dataset": 1,
+        "dataset": 2,
         "image": "aridhia-open-source/rtest:latest",
         "project": "project1"
     }
