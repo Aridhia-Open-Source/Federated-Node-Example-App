@@ -9,7 +9,6 @@
     "dataset": 1,
     "image": "aridhia-open-source/rtest:latest-dev",
     "project": "project1",
-    "results_path": "/home/user/results",
     "user": {
       "username": "r-casula",
       "idpId": "100773423"
