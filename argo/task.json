@@ -2,12 +2,13 @@
     "apiVersion": "tasks.federatednode.com/v1",
     "kind": "Analytics",
     "metadata": {
-        "name": "mytask",
+        "name": "asdf",
         "namespace": "analytics"
     },
     "spec": {
         "dataset": 1,
         "image": "aridhia-open-source/rtest:latest-dev",
-        "project": "project1"
+        "project": "project1",
+        "results_path": "/home/user/results"
     }
 }
