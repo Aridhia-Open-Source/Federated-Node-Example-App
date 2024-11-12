@@ -8,7 +8,6 @@
     "spec": {
         "dataset": 1,
         "image": "aridhia-open-source/rtest:latest-dev",
-        "project": "project1",
-        "results_path": "/home/user/results"
+        "project": "project1"
     }
 }
