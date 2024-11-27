@@ -3,7 +3,7 @@
     "kind": "Analytics",
     "metadata": {
         "name": "asdf",
-        "namespace": "analytics"
+        "namespace": "tasks"
     },
     "spec": {
         "dataset": 1,
