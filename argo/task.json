@@ -3,7 +3,7 @@
   "kind": "Analytics",
   "metadata": {
     "name": "test",
-    "namespace": "analytics"
+    "namespace": "tasks"
   },
   "spec": {
     "dataset": 1,
