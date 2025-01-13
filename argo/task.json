@@ -8,7 +8,7 @@
   "spec": {
     "dataset": 1,
     "image": "aridhia-open-source/rtest:latest-dev",
-    "project": "project1",
+    "project": "aridhia-open-source-federated-node",
     "user": {
       "username": "r-casula",
       "idpId": "100773423"
