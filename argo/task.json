@@ -2,16 +2,16 @@
   "apiVersion": "tasks.federatednode.com/v1",
   "kind": "Analytics",
   "metadata": {
-    "name": "test",
+    "name": "test2",
     "namespace": "tasks"
   },
   "spec": {
     "dataset": 1,
     "image": "aridhia-open-source/rtest:latest-dev",
-    "project": "aridhia-open-source-federated-node",
+    "project": "project1",
     "user": {
-      "username": "r-casula",
-      "idpId": "100773423"
+      "username": "talvil",
+      "idpId": "147162078"
     },
     "repository": "Aridhia-Open-Source/Federated-Node-Example-App",
     "organization": "Aridhia-Open-Source"
