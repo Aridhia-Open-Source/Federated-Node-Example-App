@@ -8,6 +8,10 @@ on:
     branches:
       - main
 
+permissions:
+  contents: write
+  packages: write
+
 jobs:
   build:
     uses: Aridhia-Open-Source/pipelines/.github/workflows/build-docker.yml@main
@@ -18,4 +22,4 @@ jobs:
       HASH_SUFFIX: false
       DOCKER_ACR: ${{ vars.DOCKER_ACR }}
     secrets:
-      DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
+      DOCKER_TOKEN: ${{ secrets.GITHUB_TOKEN }}
