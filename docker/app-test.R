@@ -18,6 +18,6 @@ connection_string <- paste0(
 )
 
 conn <- odbcDriverConnect(connection_string)
-res <- sqlQuery(conn, 'SELECT * FROM omop.person')
+res <- sqlQuery(conn, 'SELECT * FROM OMOP.PERSON')
 write.csv(res, file='/mnt/data/average.csv', row.names=FALSE)
 odbcCloseAll()
