@@ -5,11 +5,14 @@ on:
     branches:
       - pipe-test
 
+permissions:
+  contents: write
+
 jobs:
   update:
-    uses: Aridhia-Open-Source/pipelines/.github/workflows/trigger-task.yml@preview
+    uses: Aridhia-Open-Source/pipelines/.github/workflows/trigger-task.yml@main
     with:
       DEST_BRANCH: argo-monitor
       TEMPLATE_PATH: argo/task.json
     secrets:
-      SA_TOKEN: ${{ secrets.SA_TOKEN }}
+      SA_TOKEN: ${{ secrets.GITHUB_TOKEN }}
