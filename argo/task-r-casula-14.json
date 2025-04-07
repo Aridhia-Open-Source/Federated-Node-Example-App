@@ -5,7 +5,6 @@
     "name": "asdf"
   },
   "spec": {
-    "dataset": 1,
     "image": "aridhia-open-source/rtest:latest-dev",
     "project": "project1",
     "user": {
