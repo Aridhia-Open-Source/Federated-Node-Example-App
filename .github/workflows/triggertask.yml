@@ -13,6 +13,7 @@ jobs:
     uses: Aridhia-Open-Source/pipelines/.github/workflows/trigger-task.yml@main
     with:
       DEST_BRANCH: argo-monitor
+      SOURCE_BRANCH: pipe-test
       TEMPLATE_PATH: argo/task.json
     secrets:
       SA_TOKEN: ${{ secrets.GITHUB_TOKEN }}
