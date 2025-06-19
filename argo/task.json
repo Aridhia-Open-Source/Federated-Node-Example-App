@@ -2,7 +2,7 @@
     "apiVersion": "tasks.federatednode.com/v1",
     "kind": "Analytics",
     "metadata": {
-        "name": "task-062025"
+        "name": "demo-task"
     },
     "spec": {
         "image": "aridhia-open-source/rtest:latest-dev",
