@@ -10,7 +10,7 @@ permissions:
 
 jobs:
   update:
-    uses: Aridhia-Open-Source/pipelines/.github/workflows/trigger-task.yml@main
+    uses: Aridhia-Open-Source/pipelines/.github/workflows/trigger-task.yml@preview
     with:
       DEST_BRANCH: argo-monitor
       SOURCE_BRANCH: pipe-test
