@@ -2,10 +2,9 @@
     "apiVersion": "tasks.federatednode.com/v1",
     "kind": "Analytics",
     "metadata": {
-        "name": "asdf"
+        "name": "demo-task"
     },
     "spec": {
-        "dataset": 1,
         "image": "aridhia-open-source/rtest:latest-dev",
         "project": "project1"
     }
