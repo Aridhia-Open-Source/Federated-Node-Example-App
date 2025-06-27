@@ -11,7 +11,8 @@
       "username": "deepaksehgal",
       "idpId": "208616148"
     },
-    "repository": "Aridhia-Open-Source/Federated-Node-Example-App",
-    "organization": "Aridhia-Open-Source"
+    "source": {
+      "repository": "Aridhia-Open-Source/Federated-Node-Example-App"
+    }
   }
 }
