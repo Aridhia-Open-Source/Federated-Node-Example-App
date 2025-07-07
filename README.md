@@ -16,8 +16,15 @@ push it with
 docker push ghcr.io/aridhia-open-source/rtest:latest
 ```
 
-### Miniapp
+### Miniapps
 
+#### gitea-fetch
+Simple shiny app where it provides some options to customize the repository, branch and file name to fetch from Gitea in a DRE.
+
+If the file exists, then the results will be saved into a file with the same one as the origin, in a path chosen by the user (`~/files` by default).
+
+
+#### direct-api
 Is a simple R script based on `shiny` where a dropdown menu and couple of buttons will be shown to interact with the FN.
 
 Copy the whole folder content into a `Blank mini app` folder in the DRE and it should be ready to go.
