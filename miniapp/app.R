@@ -173,8 +173,3 @@ server <- function(input, output, session) {
 
 # Run the application
 shinyApp(ui = ui, server = server)
-
-
-DBI::dbConnect(odbc::odbc(),
-    .connection_string = "driver={Oracle ODBC Driver};Uid=user;Pwd=Password1!;Server=testmariadb.default.svc.cluster.local,3306;Database=test;"
-)
