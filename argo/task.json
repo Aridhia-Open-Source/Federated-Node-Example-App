@@ -5,7 +5,7 @@
         "name": "demo-task6"
     },
     "spec": {
-        "image": "aridhia-open-source/rtest:latest-dev",
+        "image": "aridhia-open-source/rtest:3.0-dev",
         "project": "project1"
     }
 }
