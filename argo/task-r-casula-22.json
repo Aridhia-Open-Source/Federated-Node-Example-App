@@ -7,7 +7,7 @@
   "spec": {
     "image": "aridhia-open-source/rtest:3.0-dev",
     "project": "project1",
-    "pr_num": "PR_NUM",
+    "pr_num": "22",
     "user": {
       "username": "r-casula",
       "idpId": "100773423"
