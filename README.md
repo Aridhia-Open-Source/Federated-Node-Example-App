@@ -27,6 +27,24 @@ If the file exists, then the results will be saved into a file with the same one
 #### direct-api
 Is a simple R script based on `shiny` where a dropdown menu and couple of buttons will be shown to interact with the FN.
 
-Copy the whole folder content into a `Blank mini app` folder in the DRE and it should be ready to go.
+#### mapping-fn
+Simple R script that given a form for the container registry it will try to map a workspace DB and the registry to a FN.
+
+
+### Deploying to the workspace
+
+1. Download this GitHub repo as a .zip file.
+2. Create a new blank Shiny app in your workspace called "cancer-wait-times".
+3. Navigate to the `cancer-wait-times` folder under "files".
+4. Delete the `app.R` file from the `cancer-wait-times` folder. Make sure you keep the `.version` file!
+5. Upload the .zip file to the `cancer-wait-times` folder.
+6. Extract the .zip file. Make sure "Folder name" is blank and "Remove compressed file after extracting" is ticked.
+7. Navigate into the unzipped folder.
+8. Select all content of the unzipped folder, and move it to the `cancer-wait-times` folder (so, one level up).
+9. Delete the now empty unzipped folder.
+10. Start the R console and run the `dependencies.R` script to install all R packages that the app requires.
+11. Run the app in your workspace.
+
+For more information visit https://knowledgebase.aridhia.io/article/how-to-upload-your-mini-app/
 
 One additional step might require the whitelisting of the federated node endpoint in the workspace settings.
