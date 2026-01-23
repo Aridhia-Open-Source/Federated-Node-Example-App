@@ -1,0 +1,14 @@
+apiVersion: tasks.federatednode.com/v1
+kind: Analytics
+metadata:
+  name: fn-task-base-good
+spec:
+  dataset:
+    name: testing21
+  image: ghcr.io/aridhia-open-source/rtest:2.5
+  project: federated_node
+  source:
+    repository: Aridhia-Open-Source/Federated-Node-Example-App
+  user:
+    idpId: "100773423"
+    username: r-casula
