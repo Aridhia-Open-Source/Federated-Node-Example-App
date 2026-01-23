@@ -1,7 +1,7 @@
 apiVersion: tasks.federatednode.com/v1
 kind: Analytics
 metadata:
-  name: fn-task-base-good
+  name: fn-task-base-good-1
 spec:
   dataset:
     name: testing21
