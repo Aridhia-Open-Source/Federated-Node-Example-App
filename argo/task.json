@@ -5,7 +5,7 @@
         "name": "demo-task6"
     },
     "spec": {
-        "image": "aridhia-open-source/rtest:2.5",
+        "image": "ghcr.io/aridhia-open-source/rtest:2.5",
         "source": {
             "repository": "Aridhia-Open-Source/Federated-Node-Example-App"
         }
