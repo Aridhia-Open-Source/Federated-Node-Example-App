@@ -2,10 +2,10 @@
   "apiVersion": "tasks.federatednode.com/v1",
   "kind": "Analytics",
   "metadata": {
-    "name": "asdf"
+    "name": "task-with-user"
   },
   "spec": {
-    "image": "aridhia-open-source/rtest:latest-dev",
+    "image": "ghcr.io/aridhia-open-source/rtest:2.5",
     "project": "project1",
     "user": {
       "username": "r-casula",

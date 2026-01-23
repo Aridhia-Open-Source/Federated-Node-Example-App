@@ -2,16 +2,10 @@
   "apiVersion": "tasks.federatednode.com/v1",
   "kind": "Analytics",
   "metadata": {
-    "name": "demo-task6"
+    "name": "task-without-user"
   },
   "spec": {
-    "image": "aridhia-open-source/rtest:3.0-dev",
-    "project": "project1",
-    "pr_num": "22",
-    "user": {
-      "username": "r-casula",
-      "idpId": "100773423"
-    },
+    "image": "ghcr.io/aridhia-open-source/rtest:2.5",
     "source": {
       "repository": "Aridhia-Open-Source/Federated-Node-Example-App"
     }
