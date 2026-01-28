@@ -2,7 +2,7 @@
   "apiVersion": "tasks.federatednode.com/v1",
   "kind": "Analytics",
   "metadata": {
-    "name": "task-with-user"
+    "name": "test-task-01"
   },
   "spec": {
     "image": "ghcr.io/aridhia-open-source/rtest:2.5",
