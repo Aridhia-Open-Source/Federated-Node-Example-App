@@ -1,8 +1,8 @@
-FROM rocker/shiny-verse:4.3.2
+FROM ghcr.io/aridhia-open-source/r-base:0.0.1
 
-RUN apt-get update \
-    && apt install libpq-dev -y \
-    && R -e "install.packages(\"RPostgreSQL\", repo=\"https://cloud.r-project.org\")"
+ENV DEBIAN_FRONTEND=noninteractive
+
+WORKDIR /
 
 COPY app-test.R /app-test.R
 ENTRYPOINT [ "Rscript", "/app-test.R" ]

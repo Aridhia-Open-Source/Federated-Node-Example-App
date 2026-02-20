@@ -7,9 +7,9 @@ It's a very simple script added to the rocker/shiny-verse:4.3.2 image, plus some
 
 To build it, run
 ```sh
-./build.sh
+./build.sh <tag>
 ```
-it will create an image called `ghcr.io/aridhia-open-source/rtest:latest`
+it will create an image called `ghcr.io/aridhia-open-source/rtest:latest` if `<tag>` arg is not provided.
 
 push it with
 ```sh
