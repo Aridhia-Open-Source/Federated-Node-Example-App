@@ -7,14 +7,21 @@ It's a very simple script added to the rocker/shiny-verse:4.3.2 image, plus some
 
 To build it, run
 ```sh
-./build.sh
+./build.sh <tag>
 ```
-it will create an image called `ghcr.io/aridhia-open-source/rtest:latest`
+it will create an image called `ghcr.io/aridhia-open-source/rtest:latest` if `<tag>` arg is not provided.
 
 push it with
 ```sh
 docker push ghcr.io/aridhia-open-source/rtest:latest
 ```
+
+|tag|purpose|based on|
+|-|-|-|
+|2.5|Run with connection string accepted|-|
+|3.0|Run with custom paths. To be used with `outputs` set|2.5|
+|3.5|Run with a delay|2.5|
+
 
 ### Miniapp
 

@@ -1,4 +1,5 @@
 require("DBI")
+
 con <- dbConnect(odbc::odbc(),
     .connection_string = Sys.getenv("CONNECTION_STRING")
 )

@@ -1,4 +1,6 @@
 #!/bin/bash
-R_IMAGE=ghcr.io/aridhia-open-source/rtest:2.5
+TAG=${$1:-latest}
+
+R_IMAGE="ghcr.io/aridhia-open-source/rtest:$TAG"
 
 docker build docker -t $R_IMAGE
