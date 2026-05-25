@@ -1,0 +1,13 @@
+{
+  "apiVersion": "tasks.federatednode.com/v1",
+  "kind": "Analytics",
+  "metadata": {
+    "name": "test-task-27"
+  },
+  "spec": {
+    "image": "ghcr.io/aridhia-open-source/rtest:2.5",
+    "source": {
+      "repository": "Aridhia-Open-Source/Federated-Node-Example-App"
+    }
+  }
+}
