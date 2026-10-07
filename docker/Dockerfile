@@ -1,4 +1,4 @@
-FROM ghcr.io/aridhia-open-source/r-base:0.0.1
+FROM ghcr.io/aridhia-open-source/r-base:0.0.2
 
 ENV DEBIAN_FRONTEND=noninteractive
 
