@@ -16,6 +16,37 @@ push it with
 docker push ghcr.io/aridhia-open-source/rtest:latest
 ```
 
+### Task images for the 2.x node
+
+Built and pushed by CI on every push to `main` (`:latest`) and on pull requests (`:latest-<commit>`):
+
+- `ghcr.io/aridhia-open-source/demo-fn`: a normal task. It reads its dataset and writes a small result. Use it to check a task runs and delivers.
+- `ghcr.io/aridhia-open-source/attacker-fn`: a hostile task. It tries every way out of the task sandbox and writes `attack-report.txt` with one line per attempt: `BLOCKED`, `LEAKED`, `ALLOWED` or `NOT FOUND`. The summary line is `GREEN` when nothing got out.
+
+The attacker looks for the node's services by name. The defaults are the dev cluster's. On another node, set them in the task file:
+
+```json
+{
+  "spec": {
+    "image": "ghcr.io/aridhia-open-source/attacker-fn:latest",
+    "env": {
+      "NODE_NAMESPACE": "<the node's namespace>",
+      "KEYCLOAK_NAMESPACE": "keycloak",
+      "DAGSTER_WEBSERVER": "<release name>-dagster-webserver",
+      "OTHER_RUN_ID": "<run id of an earlier task, for it to try to read>"
+    },
+    "compute": {
+      "limits": { "cpu": "500m", "memory": "256Mi" },
+      "requests": { "cpu": "100m", "memory": "64Mi" }
+    }
+  }
+}
+```
+
+A `NOT FOUND` line means a name is wrong for that node, so the summary says `CHECK SETTINGS` instead of `GREEN`.
+
+The sources are copies of `experiments/demo/image` and `experiments/attacker/image` in the Federated Node repo, plus the settings above.
+
 ### Miniapps
 
 #### gitea-fetch

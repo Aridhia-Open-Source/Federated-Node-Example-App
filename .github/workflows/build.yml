@@ -24,3 +24,25 @@ jobs:
       DOCKER_ACR: ${{ vars.DOCKER_ACR }}
     secrets:
       DOCKER_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  # Task images for the 2.x node (Dagster). demo-fn is a normal task; attacker-fn tries to get out of
+  # the task sandbox. Both come from the Federated Node repo's experiments/ (demo and attacker).
+  demo-fn:
+    uses: Aridhia-Open-Source/pipelines/.github/workflows/build-docker.yml@main
+    with:
+      TAG: latest
+      IMAGE: demo-fn
+      BUILD_PATH: images/demo-fn
+      DOCKER_ACR: ${{ vars.DOCKER_ACR }}
+    secrets:
+      DOCKER_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  attacker-fn:
+    uses: Aridhia-Open-Source/pipelines/.github/workflows/build-docker.yml@main
+    with:
+      TAG: latest
+      IMAGE: attacker-fn
+      BUILD_PATH: images/attacker-fn
+      DOCKER_ACR: ${{ vars.DOCKER_ACR }}
+    secrets:
+      DOCKER_TOKEN: ${{ secrets.GITHUB_TOKEN }}
