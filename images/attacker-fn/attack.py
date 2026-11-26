@@ -10,8 +10,9 @@ privileges. Each attempt prints one line:
   ALLOWED  it is meant to work (the task's own database)
   NOT FOUND  a target's name does not resolve, so the settings below are wrong for this node
 
-On a node other than the dev cluster, set NODE_NAMESPACE, KEYCLOAK_NAMESPACE and DAGSTER_WEBSERVER
-in the task file's "env" to that node's names.
+On a node other than the dev cluster, set NODE_NAMESPACE, KEYCLOAK_NAMESPACE and NODE_DAGSTER_WEBSERVER
+in the task file's "env" to that node's names. (The node refuses task env names that start with
+DAGSTER_ or KUBERNETES_, so these names must not.)
 
 It always exits 0, so the run succeeds and its output is delivered like any other task's.
 """
@@ -34,7 +35,7 @@ K8S_API = "https://kubernetes.default.svc.cluster.local"
 # never a block: it is reported NOT FOUND and the summary is not GREEN.
 NODE_NAMESPACE = os.environ.get("NODE_NAMESPACE", "fn")
 KEYCLOAK_NAMESPACE = os.environ.get("KEYCLOAK_NAMESPACE", "keycloak")
-DAGSTER_WEBSERVER = os.environ.get("DAGSTER_WEBSERVER", "fn-dev-dagster-webserver")
+NODE_DAGSTER_WEBSERVER = os.environ.get("NODE_DAGSTER_WEBSERVER", "fn-dev-dagster-webserver")
 # What an attacker would hope for. The decoy is a Secret named task-decoy with a CANARY value.
 SECRET_NAMES = list(dict.fromkeys([os.environ.get("SECRET_NAME", "task-decoy"), "task-decoy", "task-1", "task-2"]))
 CANARY = "CANARY-"
@@ -184,7 +185,7 @@ def attack_network():
         "the Kubernetes API": ("kubernetes.default.svc.cluster.local", 443),
         "nexus-api": (f"nexus-api.{NODE_NAMESPACE}.svc.cluster.local", 5000),
         "Keycloak": (f"keycloak.{KEYCLOAK_NAMESPACE}.svc.cluster.local", 80),
-        "the Dagster webserver": (f"{DAGSTER_WEBSERVER}.{NODE_NAMESPACE}.svc.cluster.local", 80),
+        "the Dagster webserver": (f"{NODE_DAGSTER_WEBSERVER}.{NODE_NAMESPACE}.svc.cluster.local", 80),
         "the node's Postgres": (f"db.{NODE_NAMESPACE}.svc.cluster.local", 5432),
         "the cloud metadata address": ("169.254.169.254", 80),
         "the internet": ("1.1.1.1", 443),

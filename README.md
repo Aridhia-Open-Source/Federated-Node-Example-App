@@ -32,7 +32,7 @@ The attacker looks for the node's services by name. The defaults are the dev clu
     "env": {
       "NODE_NAMESPACE": "<the node's namespace>",
       "KEYCLOAK_NAMESPACE": "keycloak",
-      "DAGSTER_WEBSERVER": "<release name>-dagster-webserver",
+      "NODE_DAGSTER_WEBSERVER": "<release name>-dagster-webserver",
       "OTHER_RUN_ID": "<run id of an earlier task, for it to try to read>"
     },
     "compute": {
